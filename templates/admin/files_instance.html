@@ -1,0 +1,22 @@
+{% extends "admin/admin.html" %}
+
+{% block adminsection %}
+
+<h1>{{ mf.name }}</h1>
+
+<dl>
+  <dt><label>Name</label></dt>
+  <dd>{{ mf.name }}</dd>
+  <dt><label>File Url</label></dt>
+  <dd><a href="{{ mf.fileUrl }}">{{ mf.fileUrl }}</a></dd>
+  <dt><label>Date</label></dt>
+  <dd>{{ mf.date }}</dd>
+  <dt><label>Content Downloaded</label></dt>
+  <dd>{{ hasContent }}</dd>
+  <dt><label>Source</label></dt>
+  <dd><a href="/admin/sources/{{ mf.source.slug }}">{{ mf.source.name }}</a></dd>
+  <dt><label>TV Show</label></dt>
+  <dd><a href="/admin/shows/{{ mf.series.slug }}">{{ mf.series.name }}</a></dd>
+</dl>
+
+{% endblock %}

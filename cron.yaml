@@ -1,0 +1,15 @@
+cron:
+- description: check for new tv shows at night
+  url: /cron/fetch/tv
+  timezone: America/Los_Angeles
+  schedule: every 40 minutes from 18:20 to 23:59
+
+- description: check for new tv shows early morning
+  url: /cron/fetch/tv
+  timezone: America/Los_Angeles
+  schedule: every 60 minutes from 00:20 to 03:59
+
+- description: check for movies
+  url: /cron/fetch/movies
+  timezone: America/Los_Angeles
+  schedule: every 24 hours

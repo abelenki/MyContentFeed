@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>bemytvfeed</title>
+		<link>http://bemytvfeed.chrisbarbara.com</link>
+		<description>Be My TV Feed</description>
+		<ttl>5</ttl>
+		<pubDate>{% block pubDate %}{% endblock %}</pubDate>
+		<atom:link href="http://bemytvfeed.chrisbarbara.com" rel="self" type="application/rss+xml" />
+		{% block items %}
+		{% endblock %}
+	</channel>
+</rss>

@@ -1,0 +1,27 @@
+{% extends "admin/admin.html" %}
+
+{% block adminsection %}
+
+<h1>TV Shows</h1>
+<br/>
+<table class="table table-striped">
+	{% for show in shows %}
+		<tr>
+			<td>
+				<a class="name" href="/admin/shows/{{ show.slug }}">{{ show.name }}</a>
+			</td>
+			<td>
+				<a class="btn btn-danger" href="/admin/shows/{{ show.slug }}/delete">
+					<i class="icon-trash icon-white"></i>Delete
+				</a>
+			</td>
+		</tr>
+	{% endfor %}
+</table>
+
+<br/><br/>
+<a id="create" href="/admin/shows/create" class="btn btn-primary">
+  Add a new TV Show
+</a>
+
+{% endblock %}

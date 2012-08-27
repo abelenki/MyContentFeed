@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block navmenuitems %}
+	<li {% if sources_selected %} class="active" {% endif %}><a href="/admin/sources">Sources</a></li>
+    <li {% if shows_selected %} class="active" {% endif %}><a href="/admin/shows">TV Shows</a></li>
+    <li {% if files_selected %} class="active" {% endif %}><a href="/admin/files">Matched &amp; Downloaded Files</a></li>
+{% endblock %}
+
+{% block content %}
+
+{% block adminsection %}
+{% endblock %}
+
+{% endblock %}
+
+

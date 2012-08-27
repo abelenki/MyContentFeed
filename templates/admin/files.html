@@ -1,0 +1,22 @@
+{% extends "admin/admin.html" %}
+
+{% block adminsection %}
+
+<h1>Matched Files</h1>
+<br/>
+<table class="table table-striped">
+	{% for f in files %}
+		<tr>
+			<td>
+				<a class="name" href="/admin/files/{{ f.slug }}">{{ f.name }}</a>
+			</td>
+			<td>
+				<a class="btn btn-danger" href="/admin/files/{{ f.slug }}/delete">
+					<i class="icon-trash icon-white"></i>Delete
+				</a>
+			</td>
+		</tr>
+	{% endfor %}
+</table>
+
+{% endblock %}

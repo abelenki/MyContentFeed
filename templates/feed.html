@@ -1,0 +1,15 @@
+{% extends "basefeed.html" %}
+
+{% block items %}
+
+  {% for item in newItems %}
+    <item>
+      <author>Be My Tv Feed Bot</author>
+      <title>{{ item.title }}</title>
+      <link>{{ item.link }}</link>
+      <description>{{ item.description }}</description>
+      <pubDate>{{ item.pubDate }}</pubDate>
+      <guid isPermaLink="true">{{ item.guid }}</guid>
+    </item>
+  {% endfor %}
+{% endblock %}

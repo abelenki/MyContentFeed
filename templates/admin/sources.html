@@ -1,0 +1,27 @@
+{% extends "admin/admin.html" %}
+
+{% block adminsection %}
+
+<h1>Sources</h1>
+<br/>
+<table class="table table-striped">
+	{% for source in sources %}
+		<tr>
+			<td>
+				<a class="name" href="/admin/sources/{{ source.slug }}">{{ source.name }}</a>
+			</td>
+			<td>
+				<a class="btn btn-danger" href="/admin/sources/{{ source.slug }}/delete">
+					<i class="icon-trash icon-white"></i>Delete
+				</a>
+			</td>
+		</tr>
+	{% endfor %}
+</table>
+
+<br/><br/>
+<a id="create" href="/admin/sources/create" class="btn btn-primary">
+  Add a new Source
+</a>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="fileinfo">
+
+    <h2>{{ file.name }}</h2>
+    <dl>
+        <dt><label>Url:</label></dt>
+        <dd>{{ file.fileUrl }}</dd>
+
+        <dt><label>Date:</label></dt>
+        <dd>{{ file.date }}</dd>
+
+        <dt><label>Series:</label></dt>
+        <dd>{{ file.series.name }}</dd>
+
+        <dt><label>Source:</label></dt>
+        <dd>{{ file.source.name }}</dd>
+    </dl>
+
+</div>
+
+{% endblock %}

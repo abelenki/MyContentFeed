@@ -1,0 +1,44 @@
+{% extends "admin/admin.html" %}
+
+{% block adminsection %}
+
+
+<form class="admin" method="post">
+
+  <h1>{{ action|title }} a Source</h1>
+
+  <div class="error">{{ error }}</div>
+
+  <dl class="form">
+    <dt><label for="name">Source Name</label></dt>
+    <dd><input id="name" name="name" size="30" type="text" value="{{name}}"></dd>
+    <dt><label for="rssUrl">RSS Url</label></dt>
+    <dd><input id="rssUrl" name="rssUrl" size="50" type="text" value="{{rssUrl}}"></dd>
+    <dt><label for="quality">Quality</label></dt>
+    <dd>
+      <select name="quality">
+        {% for s in qualities %}
+          <option value="{{ s }}">{{ s }}</option>
+        {% endfor %}
+      </select>
+    </dd>
+    <dt><label for="zipped">Zipped files?</label></dt>
+    <dd>
+      <input type="checkbox" name="zipped" value="true"> Yes
+    </dd>
+    <dt><label for="authorizationRequired">Filed required Authorization?</label></dt>
+    <dd>
+      <input type="checkbox" name="authorizationRequired" value="true"> Yes
+    </dd>
+    <dt><label for="authUsername">Authorization Name</label></dt>
+    <dd><input id="authUsername" name="authUsername" size="30" type="text" value="{{authUsername}}"></dd>
+    <dt><label for="authPassword">Authorization Password</label></dt>
+    <dd><input id="authPassword" name="authPassword" size="50" type="text" value="{{authPassword}}"></dd> 
+  </dl>
+  
+  <button type="submit" class="btn btn-primary btn-large">
+    {{ action|title }}
+  </button>
+
+</form>
+{% endblock %}
