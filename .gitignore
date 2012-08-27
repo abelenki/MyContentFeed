@@ -27,6 +27,7 @@ pip-log.txt
 .mr.developer.cfg
 
 #sublime editor files
-.sublime-workspace
-.sublime-project
+*.sublime-workspace
+*.sublime-project
+
 .DS_Store
