@@ -133,8 +133,6 @@ class FeedItemSearcher(object):
                     self.allMatchingFiles = set([item])
                 else:
                     self.allMatchingFiles.add(item)
-            else:
-                logging.debug("the file " + item.title + " did not match " + self.show.name)
 
         return found
 
