@@ -19,7 +19,7 @@ All you need to do is supply the index sites to check and the tv show names you 
 
 ## Development and Testing
 
-To run the unit tests, you will first need to edit the two variables in the file tests/testDownloadZip.py. You will need nose[pythonnose] installed, then run: 
+To run the unit tests, you will first need to edit the two variables in the file tests/testDownloadZip.py. You will need [nose][pythonnose] installed, then run: 
 
     python2.7 tests/runner.py
 
