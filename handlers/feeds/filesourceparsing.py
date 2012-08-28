@@ -108,7 +108,7 @@ class FeedItemSearcher(object):
 
     def isNewFileFound(self):
         searchString = self.show.getRegExSearchString()
-        logging.debug("using the regex: " + searchString)
+        #logging.debug("using the regex: " + searchString)
         return self.__searchItemsBySearchStrings(searchString)
 
     def __searchItemsBySearchStrings(self, searchString):
@@ -119,16 +119,18 @@ class FeedItemSearcher(object):
             match = regEx.search(item.title)
             if match is not None:
                 found = True
-                logging.debug("the file " + item.title + " has been found as a match for " + self.show.name)
+                originalTitle = item.title
 
                 item.title = match.group(1) + " S" + match.group(2) + "E" + match.group(3)
 
                 groupItems = match.groups()
-                if(len(groupItems) > 4):
+                if(len(groupItems) > 3):
                     item.title = item.title + " - " + match.group(4)
 
                 item.title = item.title + " (" + item.quality + ")"
-                
+
+                logging.debug("the file " + originalTitle + " has been converted to " + item.title + " and found as a match for " + self.show.name)
+
                 if self.allMatchingFiles == None:
                     self.allMatchingFiles = set([item])
                 else:
