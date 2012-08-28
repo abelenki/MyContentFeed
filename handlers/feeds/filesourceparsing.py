@@ -124,8 +124,8 @@ class FeedItemSearcher(object):
                 item.title = match.group(1) + " S" + match.group(2) + "E" + match.group(3)
 
                 groupItems = match.groups()
-                if(len(groupItems) > 3):
-                    item.title = item.title + " - " + match.group(4)
+                if(len(groupItems) > 3) and (match.group(4) is not None):
+                    item.title = item.title + " " + match.group(4)
 
                 item.title = item.title + " (" + item.quality + ")"
 
