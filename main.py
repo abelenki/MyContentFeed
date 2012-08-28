@@ -57,5 +57,7 @@ ROUTES.append((r'/.*$', site.NotFoundHandler))
 
 if settings.DEBUG:
     logging.getLogger().setLevel(logging.DEBUG)
+else:
+    logging.getLogger().setLevel(logging.INFO)
 
 app = webapp2.WSGIApplication(ROUTES, debug=settings.DEBUG)
