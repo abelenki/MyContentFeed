@@ -26,7 +26,7 @@ class ParseAndSearch(object):
         for show in activeShows:
             for loadedSource in latestSourcesAndFeedItems:
                 if loadedSource.source.quality == show.quality:
-                    logging.debug("Going to search the source " + loadedSource.source.name + " for the show " + show.name)
+                    #logging.debug("Going to search the source " + loadedSource.source.name + " for the show " + show.name)
                     
                     searcher = FeedItemSearcher(loadedSource, show)
                     if searcher.isNewFileFound() == True:
@@ -55,7 +55,7 @@ class FeedDownloader(object):
         feed = None
         try:
             feed = feedparser.parse( feedUrl )
-            logging.debug("loaded the source from " + feedUrl)
+            #logging.debug("loaded the source from " + feedUrl)
         except Exception as ex:
             logging.error( "Error calling " + feedUrl )
             logging.error( ex )
@@ -116,14 +116,19 @@ class FeedItemSearcher(object):
         regEx = re.compile(searchString, re.I)
 
         for item in self.items:
+            searchTitle = string.replace(item.title, "_", ".")
             match = regEx.search(item.title)
             if match is not None:
+                groupItems = match.groups()
+                if(len(groupItems) > 3) and (match.group(4) is not None):
+                    if self.__isEpisodeNameOrProperText(match.group(4)) == False:
+                        return False
+
                 found = True
                 originalTitle = item.title
 
                 item.title = match.group(1) + " S" + match.group(2) + "E" + match.group(3)
 
-                groupItems = match.groups()
                 if(len(groupItems) > 3) and (match.group(4) is not None):
                     item.title = item.title + " " + match.group(4)
 
@@ -137,6 +142,19 @@ class FeedItemSearcher(object):
                     self.allMatchingFiles.add(item)
 
         return found
+
+    def __isEpisodeNameOrProperText(self, text):
+        if self.__isDifferentLanguage(text, "FRENCH") or self.__isDifferentLanguage(text, "GERMAN") or self.__isDifferentLanguage(text, "HEBREW") or self.__isDifferentLanguage(text, "SPANISH"):
+            return False
+        
+        normalized = text.lower()
+        if normalized.endswith("proper") or normalized.endswith("repack") or normalized.endswith("internal") or normalized.endswith("real"):
+            return True
+
+        return True
+
+    def __isDifferentLanguage(self, text, language):
+        return (text.endswith(language) or text.find("."+language+".") <> -1 or text.find("."+language) <> -1)        
 
     def createMatchedFilesCreators(self):
         ret = []

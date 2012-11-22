@@ -77,9 +77,12 @@ class TrackedSeries(db.Model):
         return unicode(self.key())
 
     def getRegExSearchString(self):
-        regexIfied = string.replace(self.name, " ", ".")
+        regexIfied = self.name
+        regexIfied = string.replace(regexIfied, " ", ".")
+        regexIfied = string.replace(regexIfied, "_", ".")
         regexIfied = string.replace(regexIfied, ".", "\.")
-        regexIfied = "^(?:the\.)?(" + regexIfied + ")\.S(\d+)E(\d+)\.(?:(REPACK|PROPER|REAL|INTERNAL)\.)?(?:(?:(?:480|720|1080)[i|p])\.)?[P|H]DTV.*$"
+        #regexIfied = "^(?:the\.)?(" + regexIfied + ")\.S(\d{1,2})E(\d{1,2})\.(?:(REPACK|PROPER|REAL|INTERNAL)\.)?(?:(?:(?:480|720|1080)[i|p])\.)?[P|H]DTV.*$"
+        regexIfied = "^(?:the\.)?(" + regexIfied + ")\.S?(\d{1,2})[E|x](\d{1,2})\.(?:(REPACK|PROPER|REAL|INTERNAL|[A-Z].+?)\.)?(?:(?:(?:480|720|1080)[i|p])\.)?[P|H]DTV.*$"
         return regexIfied
 
 
